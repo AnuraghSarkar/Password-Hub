@@ -9,6 +9,9 @@ class CreateRoomScreen extends StatefulWidget {
 }
 
 class _CreateRoomScreenState extends State<CreateRoomScreen> {
+  final TextEditingController _userNameController = TextEditingController();
+  final TextEditingController _roomNameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,8 +27,19 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
           SizedBox(height: MediaQuery.of(context).size.height * 0.08),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20),
-            child: CustomTextField(),
-          )
+            child: CustomTextField(
+              controller: _userNameController,
+              hintText: 'Enter Your User Name',
+            ),
+          ),
+          SizedBox(height: 20),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            child: CustomTextField(
+              controller: _roomNameController,
+              hintText: 'Enter Your Room Name',
+            ),
+          ),
         ],
       ),
     );
