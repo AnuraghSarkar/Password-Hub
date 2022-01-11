@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:guessgame/page/create_join_room.dart';
 
 void main() {
   runApp(LoginScreen());
@@ -51,10 +52,26 @@ class _LoginState extends State<LoginHome> {
               padding: EdgeInsets.only(top: 0, left: 20, right: 20),
               child: Column(
                 children: [
-                  SizedBox(
-                    width: 100,
-                    height: 100,
-                    child: Image.network('https://skribbl.io/res/logo.gif'),
+                  ShaderMask(
+                    shaderCallback: (rect) {
+                      return LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: const [Colors.black, Colors.orangeAccent],
+                      ).createShader(Rect.fromLTRB(0, 0, 900, 900));
+                    },
+                    blendMode: BlendMode.dstIn,
+                    child: Container(
+                      height: 200,
+                      width: 400,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(
+                              'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fskribbl.io%2Fres%2Flogo.gif&f=1&nofb=1'),
+                          fit: BoxFit.fitWidth,
+                        ), //DecorationImage
+                      ), //BoxDecoration
+                    ),
                   ),
                   Container(
                     padding: EdgeInsets.only(top: 20),
@@ -78,7 +95,12 @@ class _LoginState extends State<LoginHome> {
                   ),
                   SizedBox(height: 40),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CreateJoinScreen()));
+                    },
                     style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Colors.orange),
