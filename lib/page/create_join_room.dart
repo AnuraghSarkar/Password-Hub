@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './create-room-screen.dart';
-import './join_room_screen.dart';
+import 'create_room_server.dart';
+import 'join_room_screen.dart';
 
 class CreateJoinScreen extends StatefulWidget {
   const CreateJoinScreen({Key? key}) : super(key: key);
