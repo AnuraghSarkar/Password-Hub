@@ -71,6 +71,7 @@ class _AccountPageState extends State<AccountHome> {
                         child: Column(
                           children: [
                             ShaderMask(
+                              
                               shaderCallback: (rect) {
                                 return LinearGradient(
                                   begin: Alignment.topCenter,

@@ -39,6 +39,7 @@ dependencies:
   shared_preferences: any
   after_layout: any
   cupertino_icons: ^1.0.2
+  flame_splash_screen: ^0.1.0
 
 dev_dependencies:
   flutter_test:

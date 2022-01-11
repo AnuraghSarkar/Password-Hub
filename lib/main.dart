@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:guessgame/page/home.dart';
+import 'package:flame_splash_screen/flame_splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      home: MyHomePage(title: 'Guess Game'),
+      home: SplashScreenGame(),
     );
   }
 }
@@ -35,6 +41,31 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: HomePage(),
+    );
+  }
+}
+
+class SplashScreenGame extends StatefulWidget {
+  const SplashScreenGame({Key? key}) : super(key: key);
+
+  @override
+  _SplashScreenGameState createState() => _SplashScreenGameState();
+}
+
+class _SplashScreenGameState extends State<SplashScreenGame> {
+  late FlameSplashController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: FlameSplashScreen(
+        theme: FlameSplashTheme.white,
+        onFinish: (context) => Navigator.pushReplacement<void, void>(
+          context,
+          MaterialPageRoute(
+              builder: (context) => MyHomePage(title: 'Guess Game')),
+        ),
+      ),
     );
   }
 }
