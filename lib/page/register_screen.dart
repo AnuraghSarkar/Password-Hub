@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 void main() {
-  runApp(LoginScreen());
+  runApp(RegisterScreen());
 }
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return LoginHome(
-      title: 'Login',
+    return RegisterHome(
+      title: 'Register',
     );
   }
 }
 
-class LoginHome extends StatefulWidget {
-  const LoginHome({Key? key, required this.title}) : super(key: key);
+class RegisterHome extends StatefulWidget {
+  const RegisterHome({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _LoginState createState() => _LoginState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _LoginState extends State<LoginHome> {
+class _RegisterState extends State<RegisterHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,7 +87,7 @@ class _LoginState extends State<LoginHome> {
                             MediaQuery.of(context).size.width,
                             MediaQuery.of(context).size.height * .06))),
                     child: const Text(
-                      'Login',
+                      'Register',
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w400,
