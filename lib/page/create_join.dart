@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'create-room-screen.dart';
-import 'join_room_screen.dart';
+import './create-room-screen.dart';
+import './join_room_screen.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class CreateJoinScreen extends StatefulWidget {
+  const CreateJoinScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _CreateJoinScreenState createState() => _CreateJoinScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _CreateJoinScreenState extends State<CreateJoinScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
