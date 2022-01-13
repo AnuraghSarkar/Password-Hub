@@ -12,12 +12,12 @@ const roomSchema = new mongoose.Schema({
     unique: true,
     trim: true,
   },
-  maxRounds: {
+  occupancy: {
     required: true,
     type: Number,
     default: 4,
   },
-  maxRoomSize: {
+  maxRounds: {
     required: true,
     type: Number,
   },
