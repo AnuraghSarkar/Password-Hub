@@ -55,85 +55,131 @@ class _AccountPageState extends State<AccountHome> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xffffffff),
-        body: Container(
-          child: Column(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Align(
-                      alignment: FractionalOffset.topCenter,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            bottom: MediaQuery.of(context).size.height / 14),
-                        child: Column(
-                          children: [
-                            ShaderMask(
-                              
-                              shaderCallback: (rect) {
-                                return LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: const [
-                                    Colors.black,
-                                    Colors.blueAccent
-                                  ],
-                                ).createShader(Rect.fromLTRB(0, 0, 900, 900));
-                              },
-                              blendMode: BlendMode.dstIn,
-                              child: Container(
-                                height: 200,
-                                width: 600,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                        'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fskribbl.io%2Fres%2Flogo.gif&f=1&nofb=1'),
-                                    fit: BoxFit.fitWidth,
-                                  ), //DecorationImage
-                                ), //BoxDecoration
-                              ),
+        body: Column(
+          children: [
+            Expanded(
+              flex: 1,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Align(
+                    alignment: FractionalOffset.topCenter,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).size.height / 14),
+                      child: Column(
+                        children: [
+                          ShaderMask(
+                            
+                            shaderCallback: (rect) {
+                              return LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: const [
+                                  Colors.black,
+                                  Colors.blueAccent
+                                ],
+                              ).createShader(Rect.fromLTRB(0, 0, 900, 900));
+                            },
+                            blendMode: BlendMode.dstIn,
+                            child: Container(
+                              height: 200,
+                              width: 600,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                      'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fskribbl.io%2Fres%2Flogo.gif&f=1&nofb=1'),
+                                  fit: BoxFit.fitWidth,
+                                ), //DecorationImage
+                              ), //BoxDecoration
                             ),
-                            SizedBox(
-                              height: 20,
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(20),
+                            child: Text(
+                              'Be a part of the community',
+                              style: TextStyle(
+                                  color: Color(0xff161830),
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 25),
                             ),
-                            Container(
-                              padding: EdgeInsets.all(20),
-                              child: Text(
-                                'Be a part of the community',
-                                style: TextStyle(
-                                    color: Color(0xff161830),
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 25),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
-                    Align(
-                      alignment: FractionalOffset.bottomCenter,
-                      child: Padding(
-                        padding: EdgeInsets.only(bottom: 30.0),
-                        child: ButtonTheme(
-                          minWidth: 300.0,
-                          height: 60,
+                  ),
+                  Align(
+                    alignment: FractionalOffset.bottomCenter,
+                    child: Padding(
+                      padding: EdgeInsets.only(bottom: 30.0),
+                      child: ButtonTheme(
+                        minWidth: 300.0,
+                        height: 60,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginScreen()));
+                          },
+                          style: ButtonStyle(
+                              shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(30))),
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(
+                                      Colors.orange),
+                              overlayColor:
+                                  MaterialStateProperty.all(Colors.red),
+                              padding: MaterialStateProperty.all(
+                                  const EdgeInsets.all(20)),
+                              textStyle: MaterialStateProperty.all<TextStyle>(
+                                  TextStyle(color: Colors.white)),
+                              minimumSize: MaterialStateProperty.all<Size>(Size(
+                                  MediaQuery.of(context).size.width / 1.7,
+                                  MediaQuery.of(context).size.height * .06))),
+                          child: const Text(
+                            'Log In',
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black),
+                          ),
+                        ),
+                      ), //Your widget here,
+                    ),
+                  ),
+                  Align(
+                    alignment: FractionalOffset.bottomCenter,
+                    child: Padding(
+                      padding: EdgeInsets.only(bottom: 200.0),
+                      child: ButtonTheme(
+                        minWidth: 400.0,
+                        height: 60,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30.0)),
+                          ),
                           child: ElevatedButton(
                             onPressed: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => LoginScreen()));
+                                      builder: (context) =>
+                                          RegisterScreen()));
                             },
                             style: ButtonStyle(
                                 shape: MaterialStateProperty.all(
                                     RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(30))),
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.orange),
+                                backgroundColor: MaterialStateProperty.all<Color>(
+                                    Colors.orange),
                                 overlayColor:
                                     MaterialStateProperty.all(Colors.red),
                                 padding: MaterialStateProperty.all(
@@ -144,69 +190,21 @@ class _AccountPageState extends State<AccountHome> {
                                     MediaQuery.of(context).size.width / 1.7,
                                     MediaQuery.of(context).size.height * .06))),
                             child: const Text(
-                              'Log In',
+                              'Sign Up',
                               style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w400,
                                   color: Colors.black),
                             ),
                           ),
-                        ), //Your widget here,
-                      ),
+                        ),
+                      ), //Your widget here,
                     ),
-                    Align(
-                      alignment: FractionalOffset.bottomCenter,
-                      child: Padding(
-                        padding: EdgeInsets.only(bottom: 200.0),
-                        child: ButtonTheme(
-                          minWidth: 400.0,
-                          height: 60,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30.0)),
-                            ),
-                            child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            RegisterScreen()));
-                              },
-                              style: ButtonStyle(
-                                  shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(30))),
-                                  backgroundColor: MaterialStateProperty.all<Color>(
-                                      Colors.orange),
-                                  overlayColor:
-                                      MaterialStateProperty.all(Colors.red),
-                                  padding: MaterialStateProperty.all(
-                                      const EdgeInsets.all(20)),
-                                  textStyle: MaterialStateProperty.all<TextStyle>(
-                                      TextStyle(color: Colors.white)),
-                                  minimumSize: MaterialStateProperty.all<Size>(Size(
-                                      MediaQuery.of(context).size.width / 1.7,
-                                      MediaQuery.of(context).size.height * .06))),
-                              child: const Text(
-                                'Sign Up',
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black),
-                              ),
-                            ),
-                          ),
-                        ), //Your widget here,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ));
   }
 }

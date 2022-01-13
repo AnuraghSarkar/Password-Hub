@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:guessgame/page/home.dart';
 import 'package:flame_splash_screen/flame_splash_screen.dart';
+// import 'package:guessgame/page/paint_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +23,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      home: SplashScreenGame(),
+      home: HomePage(),
     );
   }
 }

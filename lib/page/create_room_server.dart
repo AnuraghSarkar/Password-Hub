@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:guessgame/page/paint_screen.dart';
 import 'package:guessgame/widgets/customtextfield.dart';
 
 class CreateRoomScreen extends StatefulWidget {
@@ -13,7 +14,15 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
   final TextEditingController _roomNameController = TextEditingController();
   late String? _maxRoundsValue;
   late String? _maxRoomSizeValue;
-
+  void createRoom() {
+    if (_userNameController.text.isNotEmpty &&
+        _roomNameController.text.isNotEmpty &&
+        _maxRoundsValue != null &&
+        _maxRoomSizeValue != null) {
+      Map data= {'nickname':_userNameController.text, 'name':_roomNameController.text, 'maxrounds':_maxRoundsValue, 'maxroomsize':_maxRoomSizeValue};
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => PaintScreen(data: data, screenFrom: 'createRoom')));
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,7 +101,7 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
           ),
           SizedBox(height: 40),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: createRoom,
             style: ButtonStyle(
                 backgroundColor:
                     MaterialStateProperty.all<Color>(Colors.orange),
