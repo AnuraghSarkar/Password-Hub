@@ -3,7 +3,9 @@ require("dotenv").config();
 let app = require("express")();
 let http = require("http").createServer(app);
 const Room = require("./models/Room");
-const User = require("./models/User");
+const getWords = require("./words/getWord");
+const Player = require("./models/Player");
+
 let io = require("socket.io")(http, {
   cors: {
     origins: "*:*",
@@ -36,8 +38,24 @@ io.on("connection", (socket) => {
         return;
       }
       let room = new Room();
-      const word = getWord();
-    } catch(err) {}
+      const word = getWords();
+      room.word = word;
+      room.name = name;
+      room.maxrounds = maxrounds;
+      room.maxroomsize = maxroomsize;
+
+      let player = {
+        socketID: socket.id,
+        nickname,
+        isPartyLeader: true,
+      };
+      room.players.push(player);
+      room = await room.save();
+      socket.join(room);
+      io.to(room).emit("updateRoom", room);
+    } catch (err) {
+      console.log(err);
+    }
   });
 });
 
