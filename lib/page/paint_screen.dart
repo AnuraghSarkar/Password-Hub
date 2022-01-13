@@ -2,33 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
 
 class PaintScreen extends StatefulWidget {
-  const PaintScreen({Key? key}) : super(key: key);
+  final Map data;
+  final String screenFrom;
+  // const PaintScreen({Key? key, required this.data, required this.screenFrom}) : super(key: key);
+  const PaintScreen({required this.data, required this.screenFrom});
 
   @override
   _PaintScreenState createState() => _PaintScreenState();
 }
 
 class _PaintScreenState extends State<PaintScreen> {
+  late io.Socket _socket;
+
   @override
   void initState() {
     super.initState();
     connect();
+    print(widget.data);
   }
 
   void connect() {
-    io.Socket socket = io.io('http://localhost:3000', <String, dynamic>{
+    _socket = io.io('http://127.0.0.2:3000', <String, dynamic>{
       'transports': ['websocket'],
-      'autoConnect': false,
+      'autoConnect': true,
     });
-    socket.on('connect', (_) {
-      print('connect');
-    });
-    socket.on('event', (data) => print(data));
-    socket.on('disconnect', (_) => print('disconnect'));
-    socket.on('fromServer', (_) => print(_));
+    // Listen to socket events
 
-// add this line
-    socket.connect();
+    _socket.connect();
+
+    if (widget.screenFrom == 'createRoom') {
+      _socket.emit('create-game', widget.data);
+    }
   }
 
   @override
