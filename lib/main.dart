@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:guessgame/page/home.dart';
 import 'package:flame_splash_screen/flame_splash_screen.dart';
-// import 'package:guessgame/page/paint_screen.dart';
 
 void main() {
   runApp(const MyApp());

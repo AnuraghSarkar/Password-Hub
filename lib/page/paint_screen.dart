@@ -4,8 +4,8 @@ import 'package:socket_io_client/socket_io_client.dart' as io;
 class PaintScreen extends StatefulWidget {
   final Map data;
   final String screenFrom;
-  // const PaintScreen({Key? key, required this.data, required this.screenFrom}) : super(key: key);
-  const PaintScreen({required this.data, required this.screenFrom});
+  const PaintScreen({Key? key, required this.data, required this.screenFrom})
+      : super(key: key);
 
   @override
   _PaintScreenState createState() => _PaintScreenState();
@@ -13,12 +13,12 @@ class PaintScreen extends StatefulWidget {
 
 class _PaintScreenState extends State<PaintScreen> {
   late io.Socket _socket;
+  String dataOfRoom = '';
 
   @override
   void initState() {
     super.initState();
     connect();
-    print(widget.data);
   }
 
   void connect() {
@@ -33,10 +33,24 @@ class _PaintScreenState extends State<PaintScreen> {
     if (widget.screenFrom == 'createRoom') {
       _socket.emit('create-game', widget.data);
     }
+    print(_socket.connected);
+    _socket.on('connect', (data) {
+      print('connected');
+      _socket.on('updateRoom', (roomData) {
+        setState(() {
+          dataOfRoom = roomData;
+        });
+        if (roomData['isJoin'] != true) {
+          // Start the timer
+        }
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Container(),
+    );
   }
 }

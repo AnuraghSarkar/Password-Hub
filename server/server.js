@@ -1,8 +1,12 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
-var app = require("express")();
-var http = require("http").createServer(app);
-var io = require("socket.io")(http, {
+let app = require("express")();
+let http = require("http").createServer(app);
+const Room = require("./models/Room");
+const getWords = require("./words/getWord");
+const Player = require("./models/Player");
+
+let io = require("socket.io")(http, {
   cors: {
     origins: "*:*",
     methods: ["GET", "POST"],
@@ -24,10 +28,34 @@ mongoose
 
 var port = process.env.PORT || 3000;
 
-io.on("connection", (socket) => { 
+io.on("connection", (socket) => {
   console.log("a user connected");
   socket.on("create-game", async (nickname, name, maxrounds, maxroomsize) => {
-    
+    try {
+      const existingRoom = await Room.findOne({ name });
+      if (existingRoom) { 
+        socket.emit("room-exists", "Room already exists");
+        return;
+      }
+      let room = new Room();
+      const word = getWords();
+      room.word = word;
+      room.name = name;
+      room.maxrounds = maxrounds;
+      room.maxroomsize = maxroomsize;
+
+      let player = {
+        socketID: socket.id,
+        nickname,
+        isPartyLeader: true,
+      };
+      room.players.push(player);
+      room = await room.save();
+      socket.join(room);
+      io.to(room).emit("updateRoom", room);
+    } catch (err) {
+      console.log(err);
+    }
   });
 });
 
