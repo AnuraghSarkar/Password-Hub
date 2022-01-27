@@ -1,14 +1,14 @@
 const List<Map<String, dynamic>> groceryItems = [
   {
     'id': 1,
-    'name': 'Coffee',
-    'category': 'dairy',
+    'name': 'Momo',
+    'category': 'fast-food',
     'purchased': false,
   },
   {
-    'id': 2,
-    'name': 'goat',
-    'category': 'meat',
+    'id': 3,
+    'name': 'Pizza',
+    'category': 'frozen',
     'purchased': false,
   }
 ];
