@@ -19,19 +19,21 @@ const groceryItemCategoryMap = {
 class GroceryItem {
   int? id;
   Category? category;
-  String? name;
+  String name = '';
   bool purchased = false;
 
   GroceryItem.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    category = json['category'];
+    category = json['category'] != null
+        ? GroceryItem.categoryFromString(json['category'])
+        : Category.miscellaneous;
     purchased = json['purchased'];
   }
 
   get categoryLabel {
     if (category == null) {
-      return null;
+      return 'Miscellaneous';
     }
     return GroceryItem.stringFromCategory(category!);
   }

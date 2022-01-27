@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:foodlist/mocks/grocery_items_mock.dart';
+import 'package:foodlist/components/grocery_item_card.dart';
+import 'package:foodlist/models/grocery_item.dart';
+import 'package:foodlist/services/grocery_item_service.dart';
+import 'package:foodlist/theme.dart';
 
 class ListScreen extends StatefulWidget {
   const ListScreen({Key? key}) : super(key: key);
@@ -9,21 +12,43 @@ class ListScreen extends StatefulWidget {
 }
 
 class _ListScreenState extends State<ListScreen> {
+  List<GroceryItem> _items = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    _init();
+  }
+
+  Future<void> _init() async {
+    final items = await groceryItemService.list();
+    setState(() {
+      _items = items;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    const items = groceryItems;
     return Scaffold(
-      appBar: AppBar(title: const Text('Foodie List')),
+      // backgroundColor: Colors.grey[900],
+      appBar: AppBar(
+        title: const Text('Foodie List'),
+        backgroundColor: ThemeColors.primary,
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(Icons.add),
       ),
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+
       body: ListView.builder(
-        itemCount: items.length,
+        itemCount: _items.length,
         itemBuilder: (context, index) {
-          final item = items[index];
-          return Card(
-            child: Text(item['name']),
+          final item = _items[index];
+          return GroceryItemCard(
+            groceryItem: item,
           );
         },
       ),
