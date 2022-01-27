@@ -6,7 +6,7 @@ class ListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final items = groceryItems;
+    const items = groceryItems;
     return Scaffold(
       appBar: AppBar(title: const Text('Foodie List')),
       floatingActionButton: FloatingActionButton(
