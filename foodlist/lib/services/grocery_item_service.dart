@@ -18,3 +18,5 @@ GroceryItemService _export() {
   final container = ProviderContainer();
   return container.read(service);
 }
+
+final groceryItemService = _export();
