@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodlist/screens/list_screen.dart';
+import 'package:foodlist/screens/auth_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Foodie List',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: const ListScreen(),
+      home: const BiometericScreen(),
     );
   }
 }

@@ -35,6 +35,8 @@ class _ListScreenState extends State<ListScreen> {
       appBar: AppBar(
         title: const Text('Foodie List'),
         backgroundColor: ThemeColors.primary,
+        foregroundColor: Colors.black,
+        centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
