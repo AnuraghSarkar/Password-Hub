@@ -7,7 +7,6 @@ class LocalAuthApi {
 
   static AndroidAuthMessages androidStrings = const AndroidAuthMessages(
     cancelButton: 'cancel',
-    signInTitle: "Verify",
     goToSettingsButton: 'setting',
     biometricNotRecognized: 'Not Recognized',
     biometricSuccess: 'authentication success',
@@ -16,7 +15,7 @@ class LocalAuthApi {
   static Future<bool> hasBiometrics() async {
     try {
       return await _auth.canCheckBiometrics;
-    } on PlatformException catch (e) {
+    } on PlatformException {
       return false;
     }
   }
@@ -28,15 +27,12 @@ class LocalAuthApi {
     }
     try {
       return await _auth.authenticate(
-
-          /// to prevent passcode/pin
-          // biometricOnly: true,
           sensitiveTransaction: true,
           localizedReason: "Scan Your Biometrics",
           useErrorDialogs: true,
           androidAuthStrings: androidStrings,
           stickyAuth: true);
-    } on PlatformException catch (e) {
+    } on PlatformException {
       return false;
     }
   }
