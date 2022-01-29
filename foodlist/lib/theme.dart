@@ -13,6 +13,14 @@ class ThemeTextStyles {
     color: ThemeColors.text,
     height: 1.2,
   );
+
+  static const headin6 = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+    color: ThemeColors.text,
+    height: 1.2,
+  );
+
   static const caption = TextStyle(
     fontSize: 12,
     color: ThemeColors.textLight,
