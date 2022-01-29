@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../theme.dart';
+
 class AddGroceryItemScreen extends StatelessWidget {
   static const routeName = '/add-grocery_item';
 
@@ -8,7 +10,12 @@ class AddGroceryItemScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Add Items')),
+      appBar: AppBar(
+        title: const Text('Add Items'),
+        backgroundColor: ThemeColors.primary,
+        foregroundColor: Colors.black,
+        centerTitle: true,
+      ),
     );
   }
 }
