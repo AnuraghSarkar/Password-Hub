@@ -13,7 +13,7 @@ class GroceryList extends StatefulWidget {
 }
 
 class _GroceryListState extends State<GroceryList> {
-  bool _loading = true;
+  bool _loading = false;
   List<GroceryItem> _items = [];
 
   @override
@@ -24,11 +24,22 @@ class _GroceryListState extends State<GroceryList> {
   }
 
   Future<void> _init() async {
+    _loadData();
+  }
+
+  Future<void> _loadData() async {
+    setState(() {
+      _loading = true;
+    });
     final items = await groceryItemService.list();
     setState(() {
       _items = items;
       _loading = false;
     });
+  }
+
+  Future<void> _refreshData() async {
+    _loadData();
   }
 
   @override
@@ -82,14 +93,17 @@ class _GroceryListState extends State<GroceryList> {
       );
     }
 
-    return ListView.builder(
-      itemCount: _items.length,
-      itemBuilder: (context, index) {
-        final item = _items[index];
-        return GroceryItemCard(
-          groceryItem: item,
-        );
-      },
+    return RefreshIndicator(
+      onRefresh: _refreshData,
+      child: ListView.builder(
+        itemCount: _items.length,
+        itemBuilder: (context, index) {
+          final item = _items[index];
+          return GroceryItemCard(
+            groceryItem: item,
+          );
+        },
+      ),
     );
   }
 }
