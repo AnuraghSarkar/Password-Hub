@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodlist/components/grocery_list.dart';
+import 'package:foodlist/screens/add_grocery_items_screen.dart';
 import 'package:foodlist/theme.dart';
 
 class ListScreen extends StatefulWidget {
@@ -10,6 +11,10 @@ class ListScreen extends StatefulWidget {
 }
 
 class _ListScreenState extends State<ListScreen> {
+  void _handleAddItem() {
+    Navigator.of(context).pushNamed(AddGroceryItemScreen.routeName);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,13 +26,13 @@ class _ListScreenState extends State<ListScreen> {
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: _handleAddItem,
         child: const Icon(Icons.add),
         elevation: 11,
       ),
       floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body: const GroceryList(),
+      body: GroceryList(handleAddIem: _handleAddItem),
     );
   }
 }
