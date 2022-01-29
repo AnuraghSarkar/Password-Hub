@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:foodlist/models/grocery_item.dart';
 import 'package:foodlist/services/grocery_item_service.dart';
 
@@ -12,6 +12,7 @@ class GroceryList extends StatefulWidget {
 }
 
 class _GroceryListState extends State<GroceryList> {
+  bool _loading = true;
   List<GroceryItem> _items = [];
 
   @override
@@ -25,11 +26,27 @@ class _GroceryListState extends State<GroceryList> {
     final items = await groceryItemService.list();
     setState(() {
       _items = items;
+      _loading = false;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    if (_loading) {
+      return const Center(
+        child: CircularProgressIndicator(
+          backgroundColor: Colors.yellowAccent,
+          color: Colors.tealAccent,
+        ),
+      );
+    }
+
+    if (_items.isEmpty) {
+      return const Center(
+        child: Text('No items found'),
+      );
+    }
+
     return ListView.builder(
       itemCount: _items.length,
       itemBuilder: (context, index) {
