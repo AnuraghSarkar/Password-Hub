@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodlist/components/grocery_item_card.dart';
-import 'package:foodlist/models/grocery_item.dart';
-import 'package:foodlist/services/grocery_item_service.dart';
+import 'package:foodlist/components/grocery_list.dart';
 import 'package:foodlist/theme.dart';
 
 class ListScreen extends StatefulWidget {
@@ -12,22 +10,6 @@ class ListScreen extends StatefulWidget {
 }
 
 class _ListScreenState extends State<ListScreen> {
-  List<GroceryItem> _items = [];
-
-  @override
-  void initState() {
-    super.initState();
-
-    _init();
-  }
-
-  Future<void> _init() async {
-    final items = await groceryItemService.list();
-    setState(() {
-      _items = items;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,16 +26,7 @@ class _ListScreenState extends State<ListScreen> {
       ),
       floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-
-      body: ListView.builder(
-        itemCount: _items.length,
-        itemBuilder: (context, index) {
-          final item = _items[index];
-          return GroceryItemCard(
-            groceryItem: item,
-          );
-        },
-      ),
+      body: const GroceryList(),
     );
   }
 }
