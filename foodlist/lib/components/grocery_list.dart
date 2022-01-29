@@ -59,7 +59,7 @@ class _GroceryListState extends State<GroceryList> {
         child: EmptyListIndicator(
           title: 'Items Not Found',
           buttontext: 'Add Items',
-          onButtonPressed: () {},
+          onButtonPressed: widget.handleAddIem,
         ),
       );
     }

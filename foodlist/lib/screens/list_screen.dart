@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodlist/components/grocery_list.dart';
+import 'package:foodlist/screens/add_grocery_items_screen.dart';
 import 'package:foodlist/theme.dart';
 
 class ListScreen extends StatefulWidget {
@@ -10,7 +11,9 @@ class ListScreen extends StatefulWidget {
 }
 
 class _ListScreenState extends State<ListScreen> {
-  void _handleAddItem() {}
+  void _handleAddItem() {
+    Navigator.of(context).pushNamed(AddGroceryItemScreen.routeName);
+  }
 
   @override
   Widget build(BuildContext context) {
