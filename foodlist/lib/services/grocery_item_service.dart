@@ -5,7 +5,7 @@ import 'package:foodlist/models/grocery_item.dart';
 class GroceryItemService {
   Future<List<GroceryItem>> list() async {
     const data = groceryItems;
-    await Future.delayed(const Duration(milliseconds: 300));
+    await Future.delayed(const Duration(milliseconds: 500));
 
     final List<GroceryItem> results =
         data.map<GroceryItem>((json) => GroceryItem.fromJson(json)).toList();
