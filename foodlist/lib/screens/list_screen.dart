@@ -10,6 +10,8 @@ class ListScreen extends StatefulWidget {
 }
 
 class _ListScreenState extends State<ListScreen> {
+  void _handleAddItem() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,13 +23,13 @@ class _ListScreenState extends State<ListScreen> {
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: _handleAddItem,
         child: const Icon(Icons.add),
         elevation: 11,
       ),
       floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body: const GroceryList(),
+      body: GroceryList(handleAddIem: _handleAddItem),
     );
   }
 }

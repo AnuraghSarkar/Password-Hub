@@ -5,7 +5,9 @@ import 'empty_list_indicator.dart';
 import 'grocery_item_card.dart';
 
 class GroceryList extends StatefulWidget {
-  const GroceryList({Key? key}) : super(key: key);
+  final Function handleAddIem;
+
+  const GroceryList({Key? key, required this.handleAddIem}) : super(key: key);
 
   @override
   _GroceryListState createState() => _GroceryListState();
