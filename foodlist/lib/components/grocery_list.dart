@@ -53,8 +53,12 @@ class _GroceryListState extends State<GroceryList> {
     }
 
     if (_items.isEmpty) {
-      return const Center(
-        child: EmptyListIndicator(),
+      return Center(
+        child: EmptyListIndicator(
+          title: 'Items Not Found',
+          buttontext: 'Add Items',
+          onButtonPressed: () {},
+        ),
       );
     }
 
@@ -72,4 +76,3 @@ class _GroceryListState extends State<GroceryList> {
     );
   }
 }
-
