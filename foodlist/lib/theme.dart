@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ThemeColors {
-  static const primary = Colors.tealAccent;
-  static const text = Colors.white;
-  static const textLight = Colors.white70;
+  static const primary = Colors.indigo;
+  static const text = Colors.black;
+  static const textLight = Colors.black;
 }
 
 class ThemeTextStyles {
