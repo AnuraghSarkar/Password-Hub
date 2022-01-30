@@ -21,7 +21,7 @@ class _ListScreenState extends State<ListScreen> {
       // backgroundColor: Colors.grey[900],
       appBar: AppBar(
         title: const Text('Foodie List'),
-        backgroundColor: ThemeColors.primary,
+        backgroundColor: Colors.tealAccent,
         foregroundColor: Colors.black,
         centerTitle: true,
       ),

@@ -23,7 +23,7 @@ class EmptyListIndicator extends StatelessWidget {
       children: [
         const Icon(
           Icons.info_outline_rounded,
-          color: ThemeColors.primary,
+          color: Colors.tealAccent,
           size: 36,
         ),
         Padding(
@@ -47,7 +47,7 @@ class EmptyListIndicator extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ),
-              primary: ThemeColors.primary,
+              primary: Colors.tealAccent,
               textStyle: const TextStyle(
                 color: Colors.black,
                 fontSize: 20,
