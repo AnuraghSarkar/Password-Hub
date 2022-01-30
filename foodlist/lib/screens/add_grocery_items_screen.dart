@@ -14,7 +14,30 @@ class AddGroceryItemScreen extends StatefulWidget {
 class _AddGroceryItemScreenState extends State<AddGroceryItemScreen> {
   final formProvider = getIt<GroceryItemFormProvider>();
 
-  final formKey = GlobalKey<FormState>();
+  @override
+  // ignore: must_call_super
+  void initState() {
+    formProvider.addListener(() {
+      setStateIfMounted(() {});
+    });
+  }
+
+  void setStateIfMounted(f) {
+    if (mounted) setState(f);
+  }
+
+  void _handleSave() async {
+    if (formProvider.isProcessing) {
+      return;
+    }
+    formProvider.saveItem();
+    final newItem = await formProvider.saveItem();
+    if (newItem != null) {
+      print(newItem.name);
+    } else {
+      // TODO: error
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +48,16 @@ class _AddGroceryItemScreenState extends State<AddGroceryItemScreen> {
         backgroundColor: Colors.tealAccent,
         foregroundColor: Colors.black,
         centerTitle: true,
+        actions: [
+          formProvider.isProcessing
+              ? const SizedBox(
+                  width: 24,
+                  height: 24,
+                  child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation(Colors.white)),
+                )
+              : TextButton(onPressed: _handleSave, child: const Text('Save'))
+        ],
       ),
       body: Form(
         key: formProvider.form,

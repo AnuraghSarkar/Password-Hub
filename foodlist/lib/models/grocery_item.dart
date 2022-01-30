@@ -22,8 +22,8 @@ class GroceryItem {
   String name = '';
   bool purchased = false;
 
-  GroceryItem(){
-    // TODO: set some addintional defau
+  GroceryItem() {
+    // TODO: set some addintional default
   }
 
   GroceryItem.fromJson(Map<String, dynamic> json) {
@@ -32,7 +32,7 @@ class GroceryItem {
     category = json['category'] != null
         ? GroceryItem.categoryFromString(json['category'])
         : Category.miscellaneous;
-    purchased = json['purchased'];
+    purchased = json['purchased'] ?? false;
   }
 
   get categoryLabel {

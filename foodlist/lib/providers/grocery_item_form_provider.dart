@@ -4,7 +4,7 @@ import 'package:foodlist/models/grocery_item.dart';
 abstract class GroceryItemFormProvider extends ChangeNotifier {
   GroceryItem _groceryItem = GroceryItem();
 
-  final bool _isProcessing = false;
+  bool _isProcessing = false;
   final GlobalKey<FormState> _form = GlobalKey<FormState>();
 
 // getters
@@ -16,7 +16,7 @@ abstract class GroceryItemFormProvider extends ChangeNotifier {
   void clearItem();
   void setItem(GroceryItem item);
   void loadItem(GroceryItem item);
-  Future<void> saveItem();
+  Future<GroceryItem?> saveItem();
 
   // validation
   String? validateName(String? value);
@@ -49,7 +49,7 @@ class GroceryItemFormProviderImplementation extends GroceryItemFormProvider {
   GlobalKey<FormState> get form => _form;
 
   @override
-  GroceryItem get groceryItem => _groceryItem!;
+  GroceryItem get groceryItem => _groceryItem;
 
   @override
   bool get isProcessing => _isProcessing;
@@ -57,12 +57,31 @@ class GroceryItemFormProviderImplementation extends GroceryItemFormProvider {
   @override
   void loadItem(GroceryItem item) async {
     _groceryItem = item;
-    notifyListeners();
+    handleUpdate();
   }
 
   @override
-  Future<void> saveItem() async {
-    notifyListeners();
+  Future<GroceryItem?> saveItem() async {
+    if (!_form.currentState!.validate()) {
+      handleUpdate();
+      return null;
+    }
+
+    _isProcessing = true;
+    handleUpdate();
+
+    await Future.delayed(const Duration(milliseconds: 500));
+
+    final newGroceryItem = GroceryItem.fromJson({
+      'id': 99,
+      'name': _groceryItem.name,
+      'category': 'miscellaneous',
+      'purchased': false
+    });
+    _isProcessing = false;
+
+    handleUpdate();
+    return newGroceryItem;
   }
 
   @override
@@ -75,7 +94,7 @@ class GroceryItemFormProviderImplementation extends GroceryItemFormProvider {
 
   @override
   void setName(String name) {
-    this._groceryItem.name = name;
+    _groceryItem.name = name;
     handleUpdate();
   }
 }
