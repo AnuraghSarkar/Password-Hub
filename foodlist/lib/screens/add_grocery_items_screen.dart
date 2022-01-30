@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../theme.dart';
-
 class AddGroceryItemScreen extends StatefulWidget {
   static const routeName = '/add-grocery_item';
 
@@ -17,6 +15,7 @@ class _AddGroceryItemScreenState extends State<AddGroceryItemScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Colors.grey[900],
       appBar: AppBar(
         title: const Text('Add Items'),
         backgroundColor: Colors.tealAccent,
@@ -32,7 +31,12 @@ class _AddGroceryItemScreenState extends State<AddGroceryItemScreen> {
               decoration: const InputDecoration(labelText: "Item Name"),
               autofocus: true,
               onChanged: (value) {},
-              validator: (value) {},
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "Item Name is required";
+                }
+                return null;
+              },
             ),
           ]),
         ),

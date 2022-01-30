@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodlist/components/grocery_list.dart';
 import 'package:foodlist/screens/add_grocery_items_screen.dart';
-import 'package:foodlist/theme.dart';
 
 class ListScreen extends StatefulWidget {
   const ListScreen({Key? key}) : super(key: key);
