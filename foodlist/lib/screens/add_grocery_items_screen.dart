@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:foodlist/main.dart';
+import 'package:foodlist/providers/grocery_item_form_provider.dart';
 
 class AddGroceryItemScreen extends StatefulWidget {
   static const routeName = '/add-grocery_item';
@@ -10,6 +12,8 @@ class AddGroceryItemScreen extends StatefulWidget {
 }
 
 class _AddGroceryItemScreenState extends State<AddGroceryItemScreen> {
+  final formProvider = getIt<GroceryItemFormProvider>();
+
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -23,20 +27,17 @@ class _AddGroceryItemScreenState extends State<AddGroceryItemScreen> {
         centerTitle: true,
       ),
       body: Form(
-        key: formKey,
+        key: formProvider.form,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(children: [
             TextFormField(
               decoration: const InputDecoration(labelText: "Item Name"),
               autofocus: true,
-              onChanged: (value) {},
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Item Name is required";
-                }
-                return null;
+              onChanged: (value) {
+                formProvider.setName(value);
               },
+              validator: formProvider.validateName,
             ),
           ]),
         ),

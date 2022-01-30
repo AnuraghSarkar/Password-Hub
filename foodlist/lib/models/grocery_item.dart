@@ -22,6 +22,10 @@ class GroceryItem {
   String name = '';
   bool purchased = false;
 
+  GroceryItem(){
+    // TODO: set some addintional defau
+  }
+
   GroceryItem.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
