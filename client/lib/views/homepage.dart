@@ -24,8 +24,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<double>? _accelerometerValues;
-
+  List<double>? _userAccelerometerValues;
   final _streamSubscriptions = <StreamSubscription<dynamic>>[];
 
   @override
@@ -40,14 +39,20 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _streamSubscriptions.add(
-      accelerometerEvents.listen(
-        (AccelerometerEvent event) {
-          if (event.y > 10 && event.y < 15) {
-            // logout user
-            box.remove("auth-token");
-            box.remove("id");
-            box.remove("email");
-            Get.offAllNamed("/master-pass");
+      userAccelerometerEvents.listen(
+        (UserAccelerometerEvent event) {
+          setState(() {
+            _userAccelerometerValues = <double>[event.x, event.y, event.z];
+          });
+          if (_userAccelerometerValues != null) {
+            if (_userAccelerometerValues![1] > 3 &&
+                _userAccelerometerValues![1] < 4) {
+              // logout user
+              box.remove("auth-token");
+              box.remove("id");
+              box.remove("email");
+              Get.offAllNamed("/welcome");
+            }
           }
         },
       ),
@@ -56,8 +61,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final accelerometer =
-        _accelerometerValues?.map((double v) => v.toStringAsFixed(1)).toList();
     final passwordController = Get.put(PasswordController());
     var networkController = Get.put(NetworkConnectivityController());
 
