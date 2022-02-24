@@ -11,6 +11,24 @@ import 'package:client/views/auth_screens/forgot_master_pass.dart';
 import 'package:client/views/auth_screens/forgot_passwordpage.dart';
 import 'package:client/views/auth_screens/loginpage.dart';
 import 'package:client/views/auth_screens/mail_sentpage.dart';
+import 'package:client/views/auth_screens/new_master_password.dart';
+import 'package:client/views/auth_screens/verify_master_pass.dart';
+import 'package:client/views/auth_screens/registerpage.dart';
+import 'package:client/views/auth_screens/success.dart';
+import 'package:client/views/auth_screens/welcomepage.dart';
+import 'package:client/views/category_screens/category_pass_page.dart';
+import 'package:client/views/homepage.dart';
+import 'package:client/views/password_screens/all_passwords_page.dart';
+import 'package:client/views/password_screens/new_password_page.dart';
+import 'package:client/views/password_screens/password_details.dart';
+import 'package:client/views/password_screens/update_password_page.dart';
+import 'package:client/views/search_screens/searchpage.dart';
+import 'package:client/views/settings.dart';
+import 'package:client/views/user_screens/change_master_pass_page.dart';
+import 'package:client/views/user_screens/change_password_page.dart';
+import 'package:client/views/user_screens/update_user_page.dart';
+import 'package:client/views/user_screens/upgrade_page.dart';
+import 'package:page_transition/page_transition.dart';
 
 void main() async {
   await GetStorage.init();
@@ -52,7 +70,21 @@ class MyApp extends StatelessWidget {
           page: () => Settings(),
           transition: Transition.rightToLeft,
         ),
-
+        GetPage(
+          name: '/search',
+          page: () => SearchPage(),
+          transition: Transition.rightToLeft,
+        ),
+        GetPage(
+          name: '/login',
+          page: () => LoginPage(),
+          transition: Transition.rightToLeft,
+        ),
+        GetPage(
+          name: '/register',
+          page: () => RegisterPage(),
+          transition: Transition.rightToLeft,
+        ),
         GetPage(
           name: '/forgot-pass',
           page: () => ForgotPassword(),
@@ -98,7 +130,41 @@ class MyApp extends StatelessWidget {
           page: () => ChangePassword(),
           transition: Transition.rightToLeft,
         ),
-
+        GetPage(
+          name: '/user/upgrade',
+          page: () => UpgradePage(),
+          transition: Transition.rightToLeft,
+        ),
+        GetPage(
+          name: '/user/update-user',
+          page: () => UpdateUser(),
+          transition: Transition.rightToLeft,
+        ),
+        GetPage(
+          name: '/password/new',
+          page: () => NewPassword(),
+          transition: Transition.downToUp,
+        ),
+        GetPage(
+          name: '/password/details',
+          page: () => PasswordDetails(),
+          transition: Transition.rightToLeft,
+        ),
+        GetPage(
+          name: '/password/all',
+          page: () => AllPasswords(),
+          transition: Transition.rightToLeft,
+        ),
+        GetPage(
+          name: '/password/update',
+          page: () => UpdatePasswordPage(),
+          transition: Transition.rightToLeft,
+        ),
+        GetPage(
+          name: '/category/:catName',
+          page: () => CategoryPassPage(),
+          transition: Transition.rightToLeft,
+        ),
       ],
     );
   }
