@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -32,6 +33,19 @@ import 'package:page_transition/page_transition.dart';
 
 void main() async {
   await GetStorage.init();
+  AwesomeNotifications().initialize(null, // icon for your app notification
+      [
+        NotificationChannel(
+            channelKey: 'new_password',
+            channelName: 'New Password',
+            channelDescription: "New Password Added",
+            defaultColor: Colors.tealAccent,
+            ledColor: Colors.white,
+            playSound: true,
+            enableLights: true,
+            importance: NotificationImportance.High,
+            enableVibration: true)
+      ]);
   runApp(MyApp());
 }
 
