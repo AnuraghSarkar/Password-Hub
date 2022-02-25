@@ -240,7 +240,7 @@ router.put(
 );
 
 //For updating name of the user
-router.put("/update/name/:id", verify, async (req, res) => {
+router.put('/update/name/:id', verify, async (req, res) => {
   //validating user id
   if (!mongoose.isValidObjectId(req.params.id)) {
     return res.status(400).json({ message: "Invalid user id" });
@@ -255,12 +255,12 @@ router.put("/update/name/:id", verify, async (req, res) => {
     { new: true }
   );
 
-  //if user name is not updated
+  //if user name is not updated 
   if (!updated_user) {
     return res.status(400).json({ message: "User name is not updated" });
   }
 
-  return res.status(200).json({ message: "User Updated" });
+  return res.status(200).json({ message: "User Updated" })
 });
 
 //removing avatar
@@ -455,7 +455,7 @@ router.put("/change-master-pass/:id", verify, async (req, res) => {
     .json({ message: "Master password updated successfuly" });
 });
 
-router.delete("/delete-user/:userId", verify, async (req, res) => {
+router.delete('/delete-user/:userId', verify, async (req, res) => {
   //validating id
   if (!mongoose.isValidObjectId(req.params.id)) {
     return res.status(400).json({ message: "Invalid user id" });
@@ -471,6 +471,7 @@ router.delete("/delete-user/:userId", verify, async (req, res) => {
   if (!deletedUser) {
     return res.status(400).json({ message: "User is not delted" });
   }
+
 
   //if avatar_url is not empty we'll delete it
   //to remove old entries
@@ -511,6 +512,7 @@ router.delete("/delete-user/:userId", verify, async (req, res) => {
 
   //if everything happened properly
   return res.status(200).json({ message: "User Deleted" });
+
 });
 
 //Exporting login user

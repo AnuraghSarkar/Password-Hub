@@ -94,8 +94,8 @@ router.put("/new-master-pass/:mail", async (req, res) => {
   }
 
   //check for user has already created master pass
-  if (user.masterPassword != "") {
-    return res.status(400).json({ message: "MasterPassword already created" });
+  if(user.masterPassword != ""){
+    return res.status(400).json({message:"MasterPassword already created"});
   }
 
   //Hashing the masterPassword

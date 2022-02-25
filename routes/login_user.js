@@ -71,7 +71,7 @@ router.post("/", async (req, res) => {
   );
 
   //returning succes with header auth-token
-  return res.status(200).header("auth-token", token).json({ authToken: token });
+  return res.status(200).header("auth-token", token).json({authToken:token});
 });
 
 //verifing master password

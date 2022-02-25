@@ -19,21 +19,21 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   status: {
-    type: String,
-    enum: ["Pending", "Active"],
-    default: "Pending",
+    type: String, 
+    enum: ['Pending', 'Active'],
+    default: 'Pending'
   },
-  confirmationCode: {
-    type: String,
-    unique: true,
+  confirmationCode: { 
+    type: String, 
+    unique: true 
   },
-  avatar: {
-    type: String,
-    default: "",
+  avatar:{
+    type:String,
+    default:""
   },
-  authType: {
-    type: String,
-    default: "normal",
+  authType:{
+    type:String,
+    default:"normal"
   },
   masterPassword: {
     type: String,
@@ -46,7 +46,7 @@ const userSchema = new mongoose.Schema({
 });
 
 //Creating virtual id
-userSchema.virtual("id").get(function () {
+userSchema.virtual("id").get(function(){
   return this._id.toHexString();
 });
 

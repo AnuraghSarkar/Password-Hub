@@ -8,7 +8,7 @@ const passwordSchema = new mongoose.Schema({
     type: String,
     required: true,
     min: 2,
-    max: 255,
+    max: 255
   },
   username: {
     type: String,
@@ -27,9 +27,9 @@ const passwordSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  image: {
-    type: String,
-    default: "",
+  image:{
+    type:String,
+    default:""
   },
   isImportant: {
     type: Boolean,
@@ -51,12 +51,12 @@ const passwordSchema = new mongoose.Schema({
 });
 
 //Creating virtual id
-passwordSchema.virtual("id").get(function () {
+passwordSchema.virtual("id").get(function (){
   return this._id.toHexString();
 });
 
 //Creating virtual userId
-passwordSchema.virtual("user_Id").get(function () {
+passwordSchema.virtual("user_Id").get(function (){
   return this.userId.toHexString();
 });
 

@@ -1,5 +1,5 @@
 {
-  "name": "password_hub",
+  "name": "key-secure-v2",
   "version": "2.0.0",
   "description": "Node.js server for password manager application (Password Hub)",
   "main": "app.js",
@@ -8,7 +8,8 @@
     "dev": "nodemon app.js",
     "start": "node app.js"
   },
-  "author": "Anuragh Timalsina",
+  "author": "Alok Hegde",
+  "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
