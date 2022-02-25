@@ -419,6 +419,8 @@ _updatePassword(title, email, username, password, note, category, id,
   if (response.statusCode == 200) {
     controller.toggleButton();
     controller.toggleLoading();
+    controller.sendNotification();
+
     successSnack("Password Updated Successfully", context);
     passController.onInit();
     Get.offNamed("/home");

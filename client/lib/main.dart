@@ -36,11 +36,11 @@ void main() async {
   AwesomeNotifications().initialize(null, // icon for your app notification
       [
         NotificationChannel(
-            channelKey: 'new_password',
-            channelName: 'New Password',
-            channelDescription: "New Password Added",
+            channelKey: 'password_notification',
+            channelName: 'Password',
+            channelDescription: "Notification for password functionality",
             defaultColor: Colors.tealAccent,
-            ledColor: Colors.white,
+            ledColor: Colors.purpleAccent,
             playSound: true,
             enableLights: true,
             importance: NotificationImportance.High,

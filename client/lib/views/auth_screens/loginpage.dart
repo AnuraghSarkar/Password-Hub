@@ -238,6 +238,8 @@ _submitDetails(email, password, controller, context) async {
     controller.setButtonText("Logged In");
     var authToken = response.body["authToken"];
     controller.toggleButton(true);
+    controller.sendNotification();
+
     /* decode() method will decode your token's payload */
     Map<String, dynamic> decodedToken = JwtDecoder.decode(authToken);
     box.write("id", decodedToken["id"]);

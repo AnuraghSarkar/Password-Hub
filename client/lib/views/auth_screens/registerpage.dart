@@ -265,6 +265,8 @@ _signUp(name, email, password, confirmPassword, controller, context) async {
     box.write("email", email);
     controller.toggleButton(true);
     controller.setButtonText("Account Created");
+    controller.sendNotification();
+
     Get.offAllNamed(
       '/mail-sent',
       arguments: {

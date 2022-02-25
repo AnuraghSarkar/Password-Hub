@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:get/get.dart';
 
 class UpdatePassController extends GetxController {
@@ -22,5 +23,19 @@ class UpdatePassController extends GetxController {
 
   toggleLoading() {
     (isLoading.value) ? isLoading(false) : isLoading(true);
+  }
+
+  sendNotification() {
+    AwesomeNotifications().isNotificationAllowed().then(((value) => {
+          if (!value)
+            {AwesomeNotifications().requestPermissionToSendNotifications()}
+        }));
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(
+      id: 2,
+      channelKey: 'password_notification',
+      title: 'Just In',
+      body: 'You just updated your password',
+    ));
   }
 }

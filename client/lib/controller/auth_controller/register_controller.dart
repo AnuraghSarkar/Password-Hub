@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:get/get.dart';
 
 class RegisterController extends GetxController {
@@ -30,5 +31,19 @@ class RegisterController extends GetxController {
 
   toggleButton(bool value) {
     isButtonEnabled(value);
+  }
+
+  sendNotification() {
+    AwesomeNotifications().isNotificationAllowed().then(((value) => {
+          if (!value)
+            {AwesomeNotifications().requestPermissionToSendNotifications()}
+        }));
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(
+      id: 5,
+      channelKey: 'password_notification',
+      title: 'Just In',
+      body: 'You just registered your account',
+    ));
   }
 }

@@ -33,7 +33,7 @@ class NewPasswordController extends GetxController {
     AwesomeNotifications().createNotification(
         content: NotificationContent(
       id: 1,
-      channelKey: 'new_password',
+      channelKey: 'password_notification',
       title: 'Just In',
       body: 'You have added a new password',
     ));
