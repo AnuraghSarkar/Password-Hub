@@ -9,7 +9,6 @@ import 'package:client/services/password_service/password_generator.dart';
 import 'package:client/services/password_service/password_service.dart';
 import 'package:client/widgets/snack_bar.dart';
 import 'package:client/widgets/user_widgets/unauthorized_widget.dart';
-import 'package:awesome_notifications/awesome_notifications.dart';
 
 class NewPassword extends StatelessWidget {
   NewPassword({Key? key}) : super(key: key);

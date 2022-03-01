@@ -20,7 +20,7 @@ class WelcomePage extends StatelessWidget {
                 right: 20.0,
                 bottom: 20.0,
               ),
-              height: MediaQuery.of(context).size.height * 0.90,
+              height: MediaQuery.of(context).size.height * 0.88,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                   image: DecorationImage(
